@@ -1,14 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><script>window.onerror = function(msg, url, line) { document.body.innerHTML += '<div style="color:red;z-index:9999;position:fixed;top:0;background:white">' + msg + ' at ' + line + '</div>'; };</script><link rel="icon" href="/favicon.ico"/><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/><link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet"/><link href="https://lottie.host/686a3ba7-aa4b-47f7-ac7b-66afc90cfe86/hbIrDZ3gKu.json"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Mirruba Jewelry Created by Mr Apps 'Yaman Ajlouni'"/><title>Mirruba Jewelry</title><script defer="defer" src="/static/js/main.e5398a45.js?v=7"></script><link href="/static/css/main.5789f0fd.css" rel="stylesheet"><style>
-      header, nav, .navbar, .menu, [role="navigation"], .nav-bar {
+      header, nav, .navbar, .menu, [role="navigation"] {
         background: rgba(0,0,0,0.58) !important;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
         border-radius: 12px;
-        display: grid !important;
-        grid-template-columns: 1fr auto 1fr !important;
-        align-items: center !important;
-        gap: 10px !important;
         padding: 10px 20px !important;
         width: 98% !important;
         margin: 10px auto !important;
@@ -29,7 +25,6 @@
       }
 
       .navigation {
-        flex: 0 0 auto !important;
         display: flex !important;
         justify-content: center !important;
         order: 2 !important;
@@ -52,6 +47,13 @@
         order: 3 !important;
         justify-content: flex-end !important;
         grid-column: 3 !important;
+      }
+
+      /* Hide extra/duplicate elements that break the 3-column grid */
+      .Login-place, .language-selector-desktop, .language-selector-mobile, .bx-map, .bxs-map, 
+      .header-cart .nav-link:has(.bx-map), .header-cart .nav-link:has(.bxs-map),
+      .nav-bar > i.pi-align-justify {
+        display: none !important;
       }
 
       header a,nav a,.navbar a,.menu a,[role="navigation"] a,

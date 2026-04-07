@@ -22,16 +22,12 @@
     <script defer="defer" src="/static/js/woo-products.js?v=1"></script>
     <script defer="defer" src="/static/js/main.e5398a45.js?v=7"></script>
     <style>
-      header, nav, .navbar, .menu, [role="navigation"], .nav-bar {
+      header, nav, .navbar, .menu, [role="navigation"] {
         background: rgba(0,0,0,0.58) !important;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
         border-radius: 12px;
-        display: grid !important;
-        grid-template-columns: 1fr auto 1fr !important;
-        align-items: center !important;
-        gap: 10px !important;
         padding: 10px 20px !important;
         width: 98% !important;
         margin: 10px auto !important;
@@ -52,7 +48,6 @@
       }
 
       .navigation {
-        flex: 0 0 auto !important;
         display: flex !important;
         justify-content: center !important;
         order: 2 !important;
@@ -75,6 +70,13 @@
         order: 3 !important;
         justify-content: flex-end !important;
         grid-column: 3 !important;
+      }
+
+      /* Hide extra/duplicate elements that break the 3-column grid */
+      .Login-place, .language-selector-desktop, .language-selector-mobile, .bx-map, .bxs-map, 
+      .header-cart .nav-link:has(.bx-map), .header-cart .nav-link:has(.bxs-map),
+      .nav-bar > i.pi-align-justify {
+        display: none !important;
       }
 
       header a,nav a,.navbar a,.menu a,[role="navigation"] a,
