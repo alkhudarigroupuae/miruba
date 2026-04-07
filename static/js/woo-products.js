@@ -95,9 +95,9 @@
     var html = '<h2 class="woo-products-title">Latest Products</h2><div class="allBracelets-container">';
     for (var i = 0; i < products.length; i += 1) {
       var p = products[i];
-      // Format price: assuming the $ should be at the end as in the example (e.g., 400$)
       var priceDisplay = p.price + (cfg.currencyPrefix === "$" ? "$" : cfg.currencyPrefix);
-      var productLink = p.permalink || (location.origin + "/product/" + p.slug);
+      var slugOrId = p.slug || String(p.id || "");
+      var productLink = "/product/" + slugOrId;
       
       html += ''
         + '<div class="allBracelets-card">'

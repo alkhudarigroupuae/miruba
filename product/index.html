@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0f0f0f; color: #fff; }
+      header { position: sticky; top: 0; z-index: 1000; background: rgba(0,0,0,.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 12px 18px; }
+      .bar { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+      .back { color: #fff; text-decoration: none; padding: 8px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; }
+      .wrap { max-width: 1100px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+      .img { width: 100%; aspect-ratio: 1/1; background: #1a1a1a; border-radius: 14px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+      .img img { width: 100%; height: 100%; object-fit: cover; }
+      .meta { display: flex; flex-direction: column; gap: 16px; }
+      .title { font-size: 28px; font-weight: 700; }
+      .price { font-size: 22px; font-weight: 800; color: #e7bb67; }
+      .desc { line-height: 1.6; color: #ddd; }
+      .actions { display: flex; gap: 12px; }
+      .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+      @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .img { aspect-ratio: 4/3; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <a class="back" href="/shop">← Back to Shop</a>
+        <div></div>
+      </div>
+    </header>
+    <main class="wrap" id="product-root">
+      <div class="img"><span>Loading…</span></div>
+      <div class="meta">
+        <div class="title"></div>
+        <div class="price"></div>
+        <div class="desc"></div>
+        <div class="actions">
+          <a class="btn" href="/shop">Continue Shopping</a>
+        </div>
+      </div>
+    </main>
+    <script>
+      window.WOO_PRODUCTS_CONFIG = window.WOO_PRODUCTS_CONFIG || {
+        storeUrl: location.origin,
+        perPage: 60,
+        currencyPrefix: "$",
+        shopPath: "/shop",
+        consumerKey: "ck_77bbe3263ef7549b67a8b293430e28f6b059b0d3",
+        consumerSecret: "cs_7b5f93b8592b953a7adbe6464e367c48a5058726"
+      };
+      (async function(){
+        function slugFromPath(){ var p = location.pathname.split("/").filter(Boolean); return p[p.length-1] || ""; }
+        function qs(name){ var u = new URL(location.href); return u.searchParams.get(name)||""; }
+        var slug = slugFromPath() || qs("slug") || "";
+        var id = qs("id") || "";
+        var cfg = window.WOO_PRODUCTS_CONFIG || {};
+        async function fetchJson(u){
+          var r = await fetch(u, { headers: { "Accept":"application/json" }});
+          var t = await r.text();
+          if(!r.ok) throw new Error(t.slice(0,280)||("HTTP "+r.status));
+          try{ return JSON.parse(t); }catch(e){ throw new Error("Invalid JSON"); }
+        }
+        var endpoint = "";
+        if (id) {
+          endpoint = "/wp-json/wc/v3/products/"+encodeURIComponent(id)+"?consumer_key="+cfg.consumerKey+"&consumer_secret="+cfg.consumerSecret;
+        } else if (slug) {
+          endpoint = "/wp-json/wc/v3/products?slug="+encodeURIComponent(slug)+"&consumer_key="+cfg.consumerKey+"&consumer_secret="+cfg.consumerSecret;
+        } else {
+          document.getElementById("product-root").innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px">Product not found.</div>';
+          return;
+        }
+        try{
+          var data = await fetchJson(endpoint);
+          var p = Array.isArray(data)? data[0] : data;
+          if(!p){ document.getElementById("product-root").innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px">Product not found.</div>'; return; }
+          var img = (p.images && p.images[0] && p.images[0].src) ? p.images[0].src : "";
+          var price = (typeof p.price === "string" && p.price) ? (Number(p.price).toFixed(2)) : "0.00";
+          var root = document.getElementById("product-root");
+          root.querySelector(".img").innerHTML = img ? '<img src="'+img+'" alt="">' : '';
+          root.querySelector(".title").textContent = p.name || "";
+          root.querySelector(".price").textContent = (cfg.currencyPrefix === "$" ? price+"$" : cfg.currencyPrefix+price);
+          var tmp = document.createElement("div"); tmp.innerHTML = p.description || p.short_description || "";
+          root.querySelector(".desc").textContent = (tmp.textContent || tmp.innerText || "").trim();
+        }catch(e){
+          document.getElementById("product-root").innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px">Unable to load product.</div>';
+        }
+      })();
+    </script>
+  </body>
+</html>
