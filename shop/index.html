@@ -125,7 +125,37 @@
 
       #woo-products-root { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
       .woo-products-title { font-size: 32px; font-weight: 700; margin-bottom: 30px; text-align: center; color: #111; }
-      .allBracelets-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+      .allBracelets-out-container {
+        padding: 0 !important;
+        margin-top: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .allBracelets-container {
+        padding: 10px !important;
+        margin: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+        gap: 20px !important;
+        width: 100% !important;
+      }
+
+      .allBracelets-navbar {
+        display: none !important; /* Hide redundant navbar inside shop content */
+      }
+
+      .price-filter-show-btn {
+        margin: 10px 20px !important;
+      }
+
+      header {
+        margin-bottom: 0 !important;
+      }
+
+      #root {
+        min-height: auto !important;
+      }
       .allBracelets-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
       .allBracelets-card:hover { transform: translateY(-5px); }
       .allBracelets-card img { width: 100%; height: 280px; object-fit: cover; border-bottom: 1px solid #eee; }
