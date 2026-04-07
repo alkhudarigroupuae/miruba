@@ -1,4 +1,7 @@
-*.php
+# Ignore root-level PHP scripts but allow them in theme/mcp
+/api.php
+/FORCE_FIX.php
+/deploy.php
 start_server.py
 deploy.py
 force_deploy.py
