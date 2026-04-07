@@ -19,8 +19,9 @@
       .title { font-size: 28px; font-weight: 700; }
       .price { font-size: 22px; font-weight: 800; color: #e7bb67; }
       .desc { line-height: 1.6; color: #ddd; }
-      .actions { display: flex; gap: 12px; }
-      .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; text-decoration: none; }
+      .actions { display: flex; gap: 12px; margin-top: 8px; }
+      .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; text-decoration: none; cursor: pointer; }
+      .btn-primary { background: #e7bb67; border-color: #e7bb67; color: #111; font-weight: 700; }
       @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .img { aspect-ratio: 4/3; } }
     </style>
   </head>
@@ -38,6 +39,8 @@
         <div class="price"></div>
         <div class="desc"></div>
         <div class="actions">
+          <button id="btn-buy" class="btn btn-primary">Buy Now</button>
+          <button id="btn-add" class="btn">Add to Cart</button>
           <a class="btn" href="/shop">Continue Shopping</a>
         </div>
       </div>
@@ -84,6 +87,31 @@
           root.querySelector(".price").textContent = (cfg.currencyPrefix === "$" ? price+"$" : cfg.currencyPrefix+price);
           var tmp = document.createElement("div"); tmp.innerHTML = p.description || p.short_description || "";
           root.querySelector(".desc").textContent = (tmp.textContent || tmp.innerText || "").trim();
+          // Wire buttons
+          var item = { id: p.id, title: p.name, price: price, image: img };
+          var add = document.getElementById('btn-add');
+          var buy = document.getElementById('btn-buy');
+          function updateCart(item){
+            try {
+              var raw = localStorage.getItem('cartItems');
+              var cart = raw ? JSON.parse(raw) : [];
+              if (!Array.isArray(cart)) cart = [];
+              var ex = cart.find(function(x){ return String(x.id)===String(item.id); });
+              if (ex) ex.quantity = Number(ex.quantity||1)+1;
+              else cart.push({ id:item.id, title:item.title, price:item.price, image:item.image, quantity:1 });
+              localStorage.setItem('cartItems', JSON.stringify(cart));
+              window.dispatchEvent(new Event('storage'));
+            } catch(_) {}
+          }
+          add.addEventListener('click', function(){
+            updateCart(item);
+            add.textContent = 'Added ✓';
+            setTimeout(function(){ add.textContent = 'Add to Cart'; }, 1200);
+          });
+          buy.addEventListener('click', function(){
+            updateCart(item);
+            location.href = '/shop';
+          });
         }catch(e){
           document.getElementById("product-root").innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px">Unable to load product.</div>';
         }

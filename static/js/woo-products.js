@@ -124,10 +124,33 @@
         + '      <p class="price">' + priceDisplay + '</p>'
         + '    </div>'
         + '  </a>'
+        + '  <div class="actions" style="display:flex;gap:8px;justify-content:center;padding:12px 0 16px">'
+        + '    <a class="btn btn-buy" href="' + productLink + '" style="padding:8px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:#111;color:#fff;text-decoration:none;font-weight:600">Buy Now</a>'
+        + '    <button class="btn btn-add-cart" data-id="' + (p.id || "") + '" data-title="' + (p.title || "") + '" data-price="' + (p.price || "0.00") + '" data-image="' + (p.image || "") + '"'
+        + '      style="padding:8px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:#fff;color:#111;font-weight:600;cursor:pointer">Add to Cart</button>'
+        + '  </div>'
         + '</div>';
     }
     html += "</div>";
     root.innerHTML = html;
+
+    // Hook add-to-cart buttons
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('.btn-add-cart');
+      if (!btn) return;
+      e.preventDefault();
+      var item = {
+        id: btn.getAttribute('data-id'),
+        title: btn.getAttribute('data-title'),
+        price: btn.getAttribute('data-price'),
+        image: btn.getAttribute('data-image')
+      };
+      updateCartCount(item);
+      try {
+        btn.textContent = 'Added ✓';
+        setTimeout(function(){ btn.textContent = 'Add to Cart'; }, 1200);
+      } catch(_) {}
+    }, { once: false });
   }
 
   function renderError(message, details) {
