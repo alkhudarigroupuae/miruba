@@ -42,17 +42,19 @@
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
-        display: grid !important;
-        grid-template-columns: 1fr auto 1fr !important;
+        display: flex !important;
+        justify-content: space-between !important;
         align-items: center !important;
       }
 
       .navigation {
+        flex: 0 0 auto !important;
         display: flex !important;
         justify-content: center !important;
         order: 2 !important;
         position: relative !important;
-        grid-column: 2 !important;
+        margin: 0 auto !important;
+        text-align: center !important;
       }
 
       .Logo {
@@ -60,7 +62,7 @@
         margin: 0 !important;
         display: flex !important;
         justify-content: flex-start !important;
-        grid-column: 1 !important;
+        flex: 1 1 0% !important;
       }
 
       .header-cart {
@@ -69,7 +71,7 @@
         gap: 15px !important;
         order: 3 !important;
         justify-content: flex-end !important;
-        grid-column: 3 !important;
+        flex: 1 1 0% !important;
       }
 
       /* Hide extra/duplicate elements that break the 3-column grid */
