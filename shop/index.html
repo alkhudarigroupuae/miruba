@@ -45,33 +45,59 @@
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        position: relative !important; /* Base for absolute center */
       }
 
       .navigation {
-        flex: 0 0 auto !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
         display: flex !important;
         justify-content: center !important;
-        order: 2 !important;
-        position: relative !important;
-        margin: 0 auto !important;
-        text-align: center !important;
+        z-index: 100 !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
 
       .Logo {
-        order: 1 !important;
         margin: 0 !important;
         display: flex !important;
         justify-content: flex-start !important;
-        flex: 1 1 0% !important;
+        z-index: 101 !important;
       }
 
       .header-cart {
         display: flex !important;
         align-items: center !important;
         gap: 15px !important;
-        order: 3 !important;
         justify-content: flex-end !important;
-        flex: 1 1 0% !important;
+        z-index: 101 !important;
+      }
+
+      /* Desktop: Hide extra stuff that breaks the layout */
+      @media (min-width: 769px) {
+        .Login-place, .language-selector-desktop, .language-selector-mobile {
+          display: none !important;
+        }
+      }
+
+      /* Mobile: Reset positioning for vertical menu */
+      @media (max-width: 768px) {
+        .navigation {
+          position: fixed !important; /* Sidebar style */
+          left: -100% !important;
+          top: 0 !important;
+          transform: none !important;
+          height: 100vh !important;
+          width: 250px !important;
+          background: rgba(0,0,0,0.95) !important;
+          flex-direction: column !important;
+          transition: 0.3s ease !important;
+        }
+        .navigation.active {
+          left: 0 !important;
+        }
       }
 
       /* Hide extra/duplicate elements that break the 3-column grid */
