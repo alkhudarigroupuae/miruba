@@ -12,6 +12,22 @@
   if (!root) return;
   var shopUrl = (String(cfg.storeUrl || "").replace(/\/$/, "") || "") + (cfg.shopPath || "/shop");
 
+  function renderSkeleton(count) {
+    count = Number(count || 8);
+    var items = "";
+    for (var i = 0; i < count; i += 1) {
+      items += ''
+        + '<div class="bracelets-card skeleton">'
+        + '  <div class="sk-img"></div>'
+        + '  <div class="bracelets-details">'
+        + '    <p class="sk-line" style="width:60%"></p>'
+        + '    <p class="sk-line" style="width:40%"></p>'
+        + '  </div>'
+        + '</div>';
+    }
+    root.innerHTML = '<div class="allBracelets-container">' + items + '</div>';
+  }
+
   function cleanHtml(html) {
     var div = document.createElement("div");
     div.innerHTML = html || "";
@@ -156,6 +172,7 @@
 
   async function loadWooProducts() {
     try {
+      renderSkeleton(12);
       // Use relative paths to let Vercel proxy handle the request to admin.mirruba-jewellery.com
       var results = [];
       var perPage = Math.max(10, Math.min(Number(cfg.perPage || 100), 100));
