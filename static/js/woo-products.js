@@ -139,15 +139,15 @@
 
   async function loadWooProducts() {
     try {
-      var storeUrl = (cfg.storeUrl || "").trim().replace(/\/$/, "");
+      // Use relative paths to let Vercel proxy handle the request to admin.mirruba-jewellery.com
       var endpoint = "";
       
       if (cfg.consumerKey && cfg.consumerSecret) {
-        // Use REST API v3 with credentials
-        endpoint = storeUrl + "/wp-json/wc/v3/products?consumer_key=" + cfg.consumerKey + "&consumer_secret=" + cfg.consumerSecret + "&per_page=" + encodeURIComponent(cfg.perPage);
+        // Use REST API v3 with credentials through the local proxy
+        endpoint = "/wp-json/wc/v3/products?consumer_key=" + cfg.consumerKey + "&consumer_secret=" + cfg.consumerSecret + "&per_page=" + encodeURIComponent(cfg.perPage);
       } else {
-        // Try Store API first
-        endpoint = storeUrl + "/wp-json/wc/store/v1/products?orderby=date&order=desc&per_page=" + encodeURIComponent(cfg.perPage);
+        // Fallback to Store API through proxy
+        endpoint = "/wp-json/wc/store/v1/products?orderby=date&order=desc&per_page=" + encodeURIComponent(cfg.perPage);
       }
       
       var data = await fetchJson(endpoint);
