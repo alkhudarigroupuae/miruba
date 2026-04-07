@@ -157,18 +157,44 @@
   async function loadWooProducts() {
     try {
       // Use relative paths to let Vercel proxy handle the request to admin.mirruba-jewellery.com
-      var endpoint = "";
-      
+      var results = [];
+      var perPage = Math.max(10, Math.min(Number(cfg.perPage || 100), 100));
+
       if (cfg.consumerKey && cfg.consumerSecret) {
-        // Use REST API v3 with credentials through the local proxy
-        endpoint = "/wp-json/wc/v3/products?consumer_key=" + cfg.consumerKey + "&consumer_secret=" + cfg.consumerSecret + "&per_page=" + encodeURIComponent(cfg.perPage);
+        // Fetch ALL pages from REST API v3
+        var page = 1;
+        while (true) {
+          var url = "/wp-json/wc/v3/products"
+            + "?consumer_key=" + encodeURIComponent(cfg.consumerKey)
+            + "&consumer_secret=" + encodeURIComponent(cfg.consumerSecret)
+            + "&status=publish"
+            + "&orderby=date&order=desc"
+            + "&per_page=" + perPage
+            + "&page=" + page;
+          var batch = await fetchJson(url);
+          if (!Array.isArray(batch) || batch.length === 0) break;
+          results = results.concat(batch);
+          if (batch.length < perPage) break;
+          page += 1;
+          if (page > 50) break; // hard safety limit
+        }
       } else {
-        // Fallback to Store API through proxy
-        endpoint = "/wp-json/wc/store/v1/products?orderby=date&order=desc&per_page=" + encodeURIComponent(cfg.perPage);
+        // Fallback to Store API through proxy with pagination
+        var p = 1;
+        while (true) {
+          var url2 = "/wp-json/wc/store/v1/products?orderby=date&order=desc"
+            + "&per_page=" + perPage
+            + "&page=" + p;
+          var batch2 = await fetchJson(url2);
+          if (!Array.isArray(batch2) || batch2.length === 0) break;
+          results = results.concat(batch2);
+          if (batch2.length < perPage) break;
+          p += 1;
+          if (p > 50) break;
+        }
       }
-      
-      var data = await fetchJson(endpoint);
-      var mapped = Array.isArray(data) ? data.map(mapProduct) : [];
+
+      var mapped = Array.isArray(results) ? results.map(mapProduct) : [];
       renderProducts(mapped);
     } catch (err) {
       console.error(err);
