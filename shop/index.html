@@ -153,6 +153,8 @@
           color: #fff !important;
           font-size: 24px !important;
           cursor: pointer !important;
+          pointer-events: auto !important;
+          z-index: 10005 !important;
         }
 
         .custom-lang-switcher {
@@ -394,6 +396,30 @@
                 } else {
                     currentLangText.textContent = 'العربية';
                 }
+            }
+
+            // Force Menu Links
+            var links = document.querySelectorAll('.nav-link');
+            for(var i=0; i<links.length; i++) {
+              var txt = links[i].textContent.trim().toLowerCase();
+              if(txt === 'shop') { links[i].href = '/shop'; links[i].style.cursor = 'pointer'; }
+              if(txt === 'home') { links[i].href = '/'; links[i].style.cursor = 'pointer'; }
+            }
+
+            // Fix Mobile Menu Click
+            var menuBtn = document.querySelector('.pi-align-justify.Login-place');
+            if(menuBtn && !menuBtn.dataset.fixed) {
+              menuBtn.style.cursor = 'pointer';
+              menuBtn.style.zIndex = '10005';
+              menuBtn.addEventListener('click', function(e) {
+                e.preventDefault(); e.stopPropagation();
+                var nav = document.querySelector('.navigation');
+                if(nav) {
+                  nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+                  nav.classList.toggle('active');
+                }
+              });
+              menuBtn.dataset.fixed = "true";
             }
         }, 1000);
       }
