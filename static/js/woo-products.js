@@ -47,7 +47,9 @@
       title: cleanHtml(product.name),
       description: cleanHtml(product.short_description || product.description || ""),
       image: getImage(product),
-      price: getPrice(product)
+      price: getPrice(product),
+      permalink: product.permalink || "",
+      slug: product.slug || ""
     };
   }
 
@@ -95,15 +97,18 @@
       var p = products[i];
       // Format price: assuming the $ should be at the end as in the example (e.g., 400$)
       var priceDisplay = p.price + (cfg.currencyPrefix === "$" ? "$" : cfg.currencyPrefix);
+      var productLink = p.permalink || (location.origin + "/product/" + p.slug);
       
       html += ''
         + '<div class="allBracelets-card">'
-        + '  <img src="' + (p.image || "") + '" alt="' + (p.title || "Product") + '"/>'
-        + '  <div class="allBracelets-details">'
-        + '    <p class="title">' + (p.title || "") + '</p>'
-        + '    <p class="description">' + (p.description || "") + '</p>'
-        + '    <p class="price">' + priceDisplay + '</p>'
-        + '  </div>'
+        + '  <a href="' + productLink + '" style="text-decoration: none; color: inherit; display: block;">'
+        + '    <img src="' + (p.image || "") + '" alt="' + (p.title || "Product") + '"/>'
+        + '    <div class="allBracelets-details">'
+        + '      <p class="title">' + (p.title || "") + '</p>'
+        + '      <p class="description">' + (p.description || "") + '</p>'
+        + '      <p class="price">' + priceDisplay + '</p>'
+        + '    </div>'
+        + '  </a>'
         + '</div>';
     }
     html += "</div>";
