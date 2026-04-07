@@ -179,9 +179,14 @@
       
       /* Remove unintended large gaps */
       body, html { margin: 0 !important; padding: 0 !important; }
-      #root { min-height: auto !important; }
-      .allBracelets-out-container { margin-top: 10px !important; }
-      .woo-products-title { margin: 16px 0 12px !important; }
+      #root { min-height: 0 !important; height: auto !important; }
+      #root:empty { display: none !important; }
+      main, section, .section, .hero, .banner, .page-header, .spacer, .header-spacer {
+        margin-top: 0 !important; padding-top: 0 !important;
+        height: auto !important; min-height: 0 !important;
+      }
+      .allBracelets-out-container { margin-top: 8px !important; padding-top: 0 !important; }
+      .woo-products-title { margin: 12px 0 !important; }
 
       /* Responsive Media Queries */
       @media (max-width: 768px) {
