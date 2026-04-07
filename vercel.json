@@ -38,6 +38,14 @@
       "destination": "/product/index.html"
     },
     {
+      "source": "/view/(.*)",
+      "destination": "/product/index.html"
+    },
+    {
+      "source": "/view",
+      "destination": "/product/index.html"
+    },
+    {
       "source": "/((?!static|favicon.ico|flags.png).*)$",
       "destination": "/index.html"
     }

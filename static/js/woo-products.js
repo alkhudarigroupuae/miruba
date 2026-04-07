@@ -100,12 +100,11 @@
       var productLink = "/product/" + slugOrId;
       
       html += ''
-        + '<div class="allBracelets-card">'
+        + '<div class="bracelets-card">'
         + '  <a href="' + productLink + '" style="text-decoration: none; color: inherit; display: block;">'
         + '    <img src="' + (p.image || "") + '" alt="' + (p.title || "Product") + '"/>'
-        + '    <div class="allBracelets-details">'
+        + '    <div class="bracelets-details">'
         + '      <p class="title">' + (p.title || "") + '</p>'
-        + '      <p class="description">' + (p.description || "") + '</p>'
         + '      <p class="price">' + priceDisplay + '</p>'
         + '    </div>'
         + '  </a>'
