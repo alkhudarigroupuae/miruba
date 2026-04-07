@@ -1,0 +1,22 @@
+{
+    "data": {
+        "product": {
+            "id": 1,
+            "title": "Classic Gold Necklace",
+            "price": 1250,
+            "description": "Elegant 18k gold necklace suitable for all occasions.",
+            "color": "#FFD700",
+            "file": {
+                "path": "https://placehold.co/600x400/png?text=Gold+Necklace"
+            }
+        },
+        "files": [
+            {
+                "path": "https://placehold.co/600x400/png?text=Gold+Necklace+View+1"
+            },
+            {
+                "path": "https://placehold.co/600x400/png?text=Gold+Necklace+View+2"
+            }
+        ]
+    }
+}

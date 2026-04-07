@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Payment - Mirruba Jewelry</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        .container {
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #e94560;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .success {
+            color: #51cf66;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h2>Processing your payment...</h2>
+        <p>Please wait while we connect to N-Genius payment gateway</p>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // N-Genius Configuration
+        const NGeniusConfig = {
+            apiKey: 'YTkwNjZmZmItZmYzNi00Nzg5LTg1OWEtMzEwNjhiNjVjZjE0OjcwZGFiOTdlLTYyMGMtNDk5NS1hNDBjLTMyNWY2ZGIyNzE4ZQ==',
+            outletReference: '7c6baf08-eb0e-459e-a8d4-c5f16193b59d',
+            currency: 'AED'
+        };
+
+        const IDENTITY_URL = 'https://api-gateway.ngenius-payments.com/identity/auth/access-token';
+        const ORDER_URL = `https://api-gateway.ngenius-payments.com/transactions/outlets/${NGeniusConfig.outletReference}/orders`;
+
+        async function getToken() {
+            const response = await fetch(IDENTITY_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + NGeniusConfig.apiKey,
+                    'Content-Type': 'application/vnd.ni-identity.v1+json'
+                }
+            });
+            if (!response.ok) throw new Error('Failed to get token');
+            const data = await response.json();
+            return data.access_token;
+        }
+
+        async function createPayment(amount, orderRef, email, name) {
+            const token = await getToken();
+            
+            const orderData = {
+                action: 'SALE',
+                amount: { 
+                    currencyCode: NGeniusConfig.currency, 
+                    value: amount 
+                },
+                language: 'en',
+                merchantOrderReference: orderRef,
+                merchantAttributes: {
+                    redirectUrl: `https://mirruba-jewellery.com/payment/success.htm?order_ref=${orderRef}`
+                },
+                customerEmail: email,
+                customerName: name
+            };
+
+            const response = await fetch(ORDER_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/vnd.ni-payment.v2+json',
+                    'Accept': 'application/vnd.ni-payment.v2+json'
+                },
+                body: JSON.stringify(orderData)
+            });
+
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.message || 'Payment creation failed');
+            }
+
+            const result = await response.json();
+            return result;
+        }
+
+        async function processPayment() {
+            try {
+                // Get cart from localStorage
+                const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+                
+                // Get user info
+                const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                const orderId = new URLSearchParams(window.location.search).get('order_id') || 'MIRRUB-' + Date.now();
+                
+                if (cart.length === 0) {
+                    throw new Error('Cart is empty');
+                }
+
+                // Calculate total
+                let total = 0;
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                });
+
+                // Get currency from user selection
+                const currency = localStorage.getItem('selectedCurrency') || 'AED';
+                let amount = total;
+                
+                // Convert to cents for N-Genius
+                if (currency === 'AED') amount = Math.round(total * 100);
+                else if (currency === 'USD') amount = Math.round(total * 100);
+                else if (currency === 'EUR') amount = Math.round(total * 100);
+                
+                // Default to AED 100 for testing
+                if (amount < 100) amount = 10000; // 100 AED in cents
+                
+                // For testing - use default amount if cart empty
+                if (cart.length === 0) {
+                    amount = 10000; // 100 AED test
+                    orderId = 'TEST-' + Date.now();
+                }
+
+                const email = userData.email || 'customer@example.com';
+                const name = userData.name || 'Customer';
+
+                document.getElementById('status').innerHTML = `<p>Total: ${(amount/100).toFixed(2)} ${currency}</p><p>Creating payment for order: ${orderId}</p>`;
+
+                console.log('Creating payment:', { amount, orderId, email, name });
+
+                const result = await createPayment(amount, orderId, email, name);
+
+                if (result._links && result._links.payment) {
+                    document.getElementById('status').innerHTML = '<p class="success">Redirecting to payment...</p>';
+                    window.location.href = result._links.payment.href;
+                } else {
+                    throw new Error('No payment link received');
+                }
+            } catch (err) {
+                console.error('Payment error:', err);
+                document.getElementById('status').innerHTML = `
+                    <div class="error">
+                        <h3>Payment Error</h3>
+                        <p>${err.message}</p>
+                        <button onclick="window.location.href='/checkout'" style="margin-top:15px;padding:10px 20px;cursor:pointer;">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Start payment process
+        processPayment();
+    </script>
+</body>
+</html>

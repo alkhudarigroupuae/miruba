@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Genius Payment Integration Status - Mirruba Jewelry</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f0f0; padding: 40px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        h1 { color: #e7bb67; }
+        .status-section { margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+        .status-section h2 { margin-top: 0; color: #333; }
+        .success { color: green; }
+        .error { color: red; }
+        .pending { color: orange; }
+        .info { background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .test-link { display: inline-block; padding: 10px 20px; background: #e7bb67; color: white; text-decoration: none; border-radius: 5px; margin: 5px; }
+        .test-link:hover { background: #d4a857; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💎 N-Genius Payment Integration Status</h1>
+        
+        <div class="status-section">
+            <h2>Integration Components</h2>
+            <ul>
+                <li><strong>Payment Checkout Page:</strong> <span class="success">✓ Ready</span> - <a href="/payment/ngenius-checkout.html" target="_blank">Test Checkout</a></li>
+                <li><strong>Success Page:</strong> <span class="success">✓ Ready</span> - <a href="/payment/success.htm" target="_blank">View</a></li>
+                <li><strong>Cancel Page:</strong> <span class="success">✓ Ready</span> - <a href="/payment/cancel.htm" target="_blank">View</a></li>
+                <li><strong>Checkout Button Fix:</strong> <span class="pending">⏳ Pending JS Upload</span></li>
+            </ul>
+        </div>
+        
+        <div class="status-section">
+            <h2>Configuration</h2>
+            <div class="info">
+                <strong>API Key:</strong> Provided by user<br>
+                <strong>Outlet Reference:</strong> 7c6baf08-eb0e-459e-a8d4-c5f16193b59d<br>
+                <strong>Currency:</strong> AED (default)
+            </div>
+        </div>
+        
+        <div class="status-section">
+            <h2>Important Notes</h2>
+            <p class="pending">⚠️ <strong>API Authentication Issue:</strong> The N-Genius API key provided appears to have an authentication format issue. The payment gateway may require:</p>
+            <ul>
+                <li>A different key format (Base64 encoded)</li>
+                <li>A valid API key associated with your merchant account</li>
+                <li>Network International merchant account activation</li>
+            </ul>
+            <p>Please verify with Network International (N-Genius) that your API credentials are correct and active.</p>
+        </div>
+        
+        <div class="status-section">
+            <h2>Test Links</h2>
+            <a href="/payment/ngenius-checkout.html" class="test-link" target="_blank">Direct Checkout Test</a>
+            <a href="/checkout" class="test-link">Site Checkout</a>
+            <a href="/" class="test-link">Home Page</a>
+        </div>
+    </div>
+</body>
+</html>

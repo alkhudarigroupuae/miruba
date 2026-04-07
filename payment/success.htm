@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful - Mirruba Jewelry</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f6f7fb;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center}
+    .card{max-width:560px;background:#fff;border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(0,0,0,.12);text-align:center}
+    h1{margin:0 0 12px;color:#17324d} p{color:#555;line-height:1.6}
+    .ref{margin:16px 0;padding:12px;background:#f1f4f8;border-radius:10px;color:#17324d;font-weight:700}
+    a.btn{display:inline-block;margin-top:14px;padding:12px 20px;border-radius:999px;background:#1e4d7a;color:#fff;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Thank you for your order</h1>
+    <p>Your payment was processed successfully.</p>
+    <div class="ref" id="orderRef">Order Ref: -</div>
+    <a class="btn" href="https://mirruba-jewellery.com/">Continue Shopping</a>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("order_ref") || params.get("ref") || "-";
+    document.getElementById("orderRef").textContent = "Order Ref: " + ref;
+  </script>
+</body>
+</html>

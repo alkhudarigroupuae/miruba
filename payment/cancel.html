@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Mirruba Jewelry</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .cancel-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ff9800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .cancel-icon::before {
+            content: '✕';
+            font-size: 40px;
+            color: white;
+        }
+        h1 { color: #333; margin-bottom: 15px; }
+        p { color: #666; margin-bottom: 20px; }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #000;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #fff;
+            color: #333;
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cancel-icon"></div>
+        <h1>Payment Cancelled</h1>
+        <p>Your payment was cancelled. No charges have been made.</p>
+        <p>You can try again or continue shopping.</p>
+        
+        <a href="https://mirruba-jewellery.com" class="btn">Continue Shopping</a>
+        <a href="https://mirruba-jewellery.com/contact" class="btn btn-secondary">Contact Us</a>
+    </div>
+</body>
+</html>

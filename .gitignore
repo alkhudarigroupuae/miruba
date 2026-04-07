@@ -1,0 +1,9 @@
+*.php
+start_server.py
+deploy.py
+force_deploy.py
+ftp_upload.py
+upload_to_cpanel.py
+final_upload/
+final.zip
+.DS_Store

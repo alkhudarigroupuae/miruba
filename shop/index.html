@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Shop – Mirruba Jewelry</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet" />
+    <link href="/static/css/main.5789f0fd.css" rel="stylesheet" />
+    <script>
+      window.WOO_PRODUCTS_CONFIG = {
+        storeUrl: location.origin,
+        perPage: 60,
+        currencyPrefix: "$",
+        shopPath: "/shop"
+      };
+    </script>
+    <script defer="defer" src="/static/js/woo-products.js?v=1"></script>
+    <script defer="defer" src="/static/js/main.e5398a45.js?v=7"></script>
+    <style>
+      header, nav, .navbar, .menu, [role="navigation"], .nav-bar {
+        background: rgba(0,0,0,0.58) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+        border-radius: 12px;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 10px 20px !important;
+        width: 98% !important;
+        margin: 10px auto !important;
+        max-width: 1400px !important;
+        transition: all 0.3s ease;
+      }
+
+      .nav-bar {
+        background: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .navigation {
+        flex: 1 !important;
+        display: flex !important;
+        justify-content: center !important;
+        order: 2 !important;
+      }
+
+      .Logo {
+        order: 1 !important;
+        margin: 0 !important;
+        flex: 0 0 auto !important;
+        min-width: 150px !important;
+      }
+
+      .header-cart {
+        display: flex !important;
+        align-items: center !important;
+        gap: 15px !important;
+        order: 3 !important;
+        flex: 0 0 auto !important;
+        justify-content: flex-end !important;
+        min-width: 150px !important;
+      }
+
+      header a,nav a,.navbar a,.menu a,[role="navigation"] a,
+      header button,nav button,.navbar button,.menu button,[role="navigation"] button {
+        color: #fff !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        white-space: nowrap !important;
+        display: inline-block !important;
+        font-size: 15px !important;
+        padding: 6px 12px !important;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+
+      header a:hover, nav a:hover { opacity: 0.8; }
+      header i,nav i,.navbar i,.menu i,[role="navigation"] i { color: #fff !important; font-size: 20px !important; vertical-align: middle; }
+
+      #woo-products-root { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+      .woo-products-title { font-size: 32px; font-weight: 700; margin-bottom: 30px; text-align: center; color: #111; }
+      .allBracelets-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+      .allBracelets-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+      .allBracelets-card:hover { transform: translateY(-5px); }
+      .allBracelets-card img { width: 100%; height: 280px; object-fit: cover; border-bottom: 1px solid #eee; }
+      .allBracelets-details { padding: 18px; text-align: center; }
+      .allBracelets-details .title { font-size: 18px; font-weight: 700; margin: 0 0 10px; color: #111; }
+      .allBracelets-details .description { font-size: 14px; color: #666; margin-bottom: 15px; height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+      .allBracelets-details .price { font-size: 20px; font-weight: 800; color: #d4a956; margin: 0; }
+      .woo-products-message { padding: 40px; text-align: center; font-size: 18px; color: #666; background: #f9f9f9; border-radius: 12px; }
+
+      /* Responsive Media Queries */
+      @media (max-width: 768px) {
+        header,nav,.navbar,.menu,[role="navigation"] {
+          gap: 8px !important;
+          padding: 8px 12px !important;
+          border-radius: 8px;
+        }
+        header a,nav a,.navbar a,.menu a,[role="navigation"] a {
+          font-size: 13px !important;
+          padding: 4px 8px !important;
+        }
+        .woo-products-title { font-size: 24px; margin-bottom: 20px; }
+        .allBracelets-container {
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+          gap: 15px !important;
+        }
+        .allBracelets-card img { height: 180px !important; }
+        .allBracelets-details { padding: 12px; }
+        .allBracelets-details .title { font-size: 15px !important; }
+        .allBracelets-details .price { font-size: 16px !important; }
+      }
+      
+      /* RTL & Arabic Fixes */
+      html[lang="ar"], [dir="rtl"] {
+        font-family: 'El Messiri', 'GE Hili', sans-serif !important;
+      }
+      
+      /* Ensure phone numbers and numbers stay LTR in Arabic mode */
+      p, span, a, div {
+        unicode-bidi: plaintext;
+      }
+      
+      /* Specifically target the phone number provided by the user */
+      p:contains("+971"), span:contains("+971"), a:contains("+971") {
+        direction: ltr !important;
+        display: inline-block;
+      }
+      
+      /* Fallback for all elements that look like they have a plus sign for phone */
+      [dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] a {
+        text-align: right;
+      }
+      
+      /* Force LTR for anything that looks like a phone number */
+      .phone-number, [href^="tel:"], p:has(> b), span:has(> b) {
+        direction: ltr !important;
+        unicode-bidi: embed;
+        display: inline-block;
+      }
+
+      /* New Language Switcher Style for Menu Integration */
+      .custom-lang-switcher {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      
+      .lang-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .lang-dropbtn {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #fff !important;
+        padding: 6px 12px !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 8px !important;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      
+      .lang-dropbtn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #e7bb67 !important;
+      }
+      
+      .lang-dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        min-width: 150px;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+        z-index: 10002;
+        border-radius: 12px;
+        margin-top: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      
+      .lang-dropdown-content a {
+        color: #fff !important;
+        padding: 12px 18px !important;
+        text-decoration: none;
+        display: flex !important;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px !important;
+        transition: background 0.2s;
+        text-align: left;
+        width: 100%;
+        justify-content: flex-start !important;
+      }
+      
+      .lang-dropdown-content a:hover {
+        background: rgba(231, 187, 103, 0.25) !important;
+        color: #e7bb67 !important;
+      }
+      
+      .lang-dropdown:hover .lang-dropdown-content {
+        display: block;
+      }
+      
+      /* Hide original language buttons and the map icon */
+      .language-btn, .language-selector-desktop, .language-selector-mobile, .bx-map, .bxs-map, .header-cart .nav-link:has(.bx-map), .header-cart .nav-link:has(.bxs-map) {
+        display: none !important;
+      }
+      
+      /* RTL adjustments for Menu Language Switcher */
+      [dir="rtl"] .lang-dropdown-content {
+        right: auto;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <section id="woo-products-root"><div class="woo-products-message">Loading Shop Products...</div></section>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script>
+    (function () {
+      // Setup custom language switcher
+      function setupLangSwitcher() {
+        // Wait for the cart container to be available
+        const cartContainer = document.querySelector('.header-cart');
+        if (!cartContainer) {
+            // Retry after a short delay if navigation isn't ready
+            setTimeout(setupLangSwitcher, 500);
+            return;
+        }
+
+        // Check if switcher already exists to avoid duplicates
+        if (document.querySelector('.custom-lang-switcher')) return;
+
+        const switcher = document.createElement('div');
+        switcher.className = 'custom-lang-switcher';
+        switcher.innerHTML = `
+            <div class="lang-dropdown">
+                <button class="lang-dropbtn">
+                    <i class='bx bx-globe'></i> <span id="current-lang-text">English</span> <i class='bx bx-chevron-down'></i>
+                </button>
+                <div class="lang-dropdown-content">
+                    <a href="#" data-lang="en"><img src="https://flagcdn.com/w20/gb.png" style="width:18px;height:12px;object-fit:cover;border-radius:2px" alt="EN"> English</a>
+                    <a href="#" data-lang="ar"><img src="https://flagcdn.com/w20/ae.png" style="width:18px;height:12px;object-fit:cover;border-radius:2px" alt="AR"> العربية</a>
+                </div>
+            </div>
+        `;
+        // Insert before the cart icon
+        cartContainer.insertBefore(switcher, cartContainer.firstChild);
+
+        const currentLangText = switcher.querySelector('#current-lang-text');
+        const links = switcher.querySelectorAll('.lang-dropdown-content a');
+
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = link.getAttribute('data-lang');
+                const originalBtns = document.querySelectorAll('.language-btn');
+                originalBtns.forEach(btn => {
+                    const btnText = btn.textContent.trim().toLowerCase();
+                    if (lang === 'en' && (btnText === 'english' || btnText.includes('en'))) {
+                        btn.click();
+                        currentLangText.textContent = 'English';
+                    } else if (lang === 'ar' && (btnText === 'arabic' || btnText.includes('ar') || btnText.includes('عرب'))) {
+                        btn.click();
+                        currentLangText.textContent = 'العربية';
+                    }
+                });
+            });
+        });
+
+        // Auto-sync with the active state from React
+        setInterval(() => {
+            const activeBtn = document.querySelector('.language-btn.active');
+            if (activeBtn) {
+                const text = activeBtn.textContent.trim().toLowerCase();
+                if (text === 'english' || text.includes('en')) {
+                    currentLangText.textContent = 'English';
+                } else {
+                    currentLangText.textContent = 'العربية';
+                }
+            }
+        }, 1000);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupLangSwitcher);
+      } else {
+        setupLangSwitcher();
+      }
+    })();
+    </script>
+  </body>
+</html>

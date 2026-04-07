@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://admin.mirruba-jewellery.com/api/$1"
+    },
+    {
+      "source": "/wp-json/(.*)",
+      "destination": "https://admin.mirruba-jewellery.com/wp-json/$1"
+    },
+    {
+      "source": "/client/(.*)",
+      "destination": "https://admin.mirruba-jewellery.com/api/v1/client/$1"
+    },
+    {
+      "source": "/shop/(.*)",
+      "destination": "/shop/index.html"
+    },
+    {
+      "source": "/shop",
+      "destination": "/shop/index.html"
+    },
+    {
+      "source": "/((?!static|favicon.ico|flags.png).*)$",
+      "destination": "/index.html"
+    }
+  ]
+}

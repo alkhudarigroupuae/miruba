@@ -1,0 +1,284 @@
+{
+    "data": [
+        {
+            "id": "2",
+            "title": "Test",
+            "description": "ertyuiop[",
+            "price": "400",
+            "color": "444444",
+            "category_id": "1",
+            "file_id": "49",
+            "created_at": "2024-07-30 10:20:36",
+            "updated_at": "2024-08-10 07:00:42",
+            "image": "static/media/2024-08-10_7_0_42_261_products.jpg",
+            "file": {
+                "path": "/static/media/2024-08-10_7_0_42_261_products.jpg"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-10_7_0_42_261_products.jpg"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "title": "earring 1",
+            "description": "earring 1",
+            "price": "200",
+            "color": "000000",
+            "category_id": "2",
+            "file_id": "6",
+            "created_at": "2024-07-30 10:35:40",
+            "updated_at": "2024-07-30 10:35:40",
+            "image": "/static/media/2024-07-30_10_35_40_441_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_35_40_441_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_35_40_441_products.png"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "title": "earring 2",
+            "description": "earring 2",
+            "price": "100",
+            "color": "000000",
+            "category_id": "2",
+            "file_id": "8",
+            "created_at": "2024-07-30 10:36:22",
+            "updated_at": "2024-07-30 10:36:46",
+            "image": "/static/media/2024-07-30_10_36_22_198_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_36_22_198_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_36_22_198_products.png"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "title": "rings 1",
+            "description": "rings 1",
+            "price": "100",
+            "color": "000000",
+            "category_id": "3",
+            "file_id": "10",
+            "created_at": "2024-07-30 10:37:35",
+            "updated_at": "2024-07-30 10:37:35",
+            "image": "/static/media/2024-07-30_10_37_35_638_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_37_35_638_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_37_35_638_products.png"
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "title": "rings 1",
+            "description": "rings 1",
+            "price": "100",
+            "color": "000000",
+            "category_id": "3",
+            "file_id": "12",
+            "created_at": "2024-07-30 10:38:21",
+            "updated_at": "2024-07-30 10:38:21",
+            "image": "/static/media/2024-07-30_10_38_21_822_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_38_21_822_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_38_21_822_products.png"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "title": "necklaces 1",
+            "description": "necklaces 1 ewfafewa fewafewaf ewa fewa fewa fewa",
+            "price": "150",
+            "color": "000000",
+            "category_id": "4",
+            "file_id": "14",
+            "created_at": "2024-07-30 10:56:56",
+            "updated_at": "2024-07-30 13:46:49",
+            "image": "/static/media/2024-07-30_10_56_56_17_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_56_56_17_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_56_56_17_products.png"
+                }
+            ]
+        },
+        {
+            "id": "8",
+            "title": "bracelets 1",
+            "description": "bracelets 1",
+            "price": "250",
+            "color": "000000",
+            "category_id": "5",
+            "file_id": "16",
+            "created_at": "2024-07-30 10:58:31",
+            "updated_at": "2024-07-30 10:58:31",
+            "image": "/static/media/2024-07-30_10_58_31_66_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_10_58_31_66_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_10_58_31_66_products.png"
+                }
+            ]
+        },
+        {
+            "id": "9",
+            "title": "necklaces 2",
+            "description": "necklaces 2 fmeakfe wafe wmak fewa fmkwa",
+            "price": "20",
+            "color": "64704a",
+            "category_id": "4",
+            "file_id": "18",
+            "created_at": "2024-07-30 13:51:06",
+            "updated_at": "2024-07-30 13:51:06",
+            "image": "/static/media/2024-07-30_13_51_6_83_products.png",
+            "file": {
+                "path": "/static/media/2024-07-30_13_51_6_83_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-07-30_13_51_6_83_products.png"
+                }
+            ]
+        },
+        {
+            "id": "10",
+            "title": "earring 3",
+            "description": "ear 34",
+            "price": "150",
+            "color": "000000",
+            "category_id": "2",
+            "file_id": "24",
+            "created_at": "2024-08-04 11:14:52",
+            "updated_at": "2024-08-04 11:14:52",
+            "image": "/static/media/2024-08-04_11_14_52_675_products.png",
+            "file": {
+                "path": "/static/media/2024-08-04_11_14_52_675_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-04_11_14_52_675_products.png"
+                }
+            ]
+        },
+        {
+            "id": "11",
+            "title": "earring 4",
+            "description": "ear 4 test",
+            "price": "500",
+            "color": "a892a8",
+            "category_id": "2",
+            "file_id": "26",
+            "created_at": "2024-08-04 11:15:14",
+            "updated_at": "2024-08-04 11:15:14",
+            "image": "/static/media/2024-08-04_11_15_14_341_products.png",
+            "file": {
+                "path": "/static/media/2024-08-04_11_15_14_341_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-04_11_15_14_341_products.png"
+                }
+            ]
+        },
+        {
+            "id": "12",
+            "title": "necklaces real",
+            "description": "real data",
+            "price": "300",
+            "color": "000000",
+            "category_id": "4",
+            "file_id": "28",
+            "created_at": "2024-08-04 11:28:15",
+            "updated_at": "2024-08-04 11:28:15",
+            "image": "/static/media/2024-08-04_11_28_15_749_products.jpg",
+            "file": {
+                "path": "/static/media/2024-08-04_11_28_15_749_products.jpg"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-04_11_28_15_749_products.jpg"
+                }
+            ]
+        },
+        {
+            "id": "13",
+            "title": "Test",
+            "description": "bjadssamn d bsakugdsam h masjfbamsn fasmfnlasmfb askfa ihhbsakjfas faskfmas fkjashfmnas f asbjfsa fsamnf jaksf masfkjasf asfkjabsf masf jkasbfmnasf",
+            "price": "1500",
+            "color": "050505",
+            "category_id": "1",
+            "file_id": "34",
+            "created_at": "2024-08-07 07:02:22",
+            "updated_at": "2024-08-07 07:02:22",
+            "image": "/static/media/2024-08-07_7_2_22_99_products.jpg",
+            "file": {
+                "path": "/static/media/2024-08-07_7_2_22_99_products.jpg"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-07_7_2_22_99_products.jpg"
+                }
+            ]
+        },
+        {
+            "id": "14",
+            "title": "Test",
+            "description": "hjkbhln snadgiusa nhlfisaf m,sfjofs m,SFHfn. sfklnas ,masnjasjfm",
+            "price": "4000",
+            "color": "231455",
+            "category_id": "1",
+            "file_id": "39",
+            "created_at": "2024-08-07 07:03:07",
+            "updated_at": "2024-08-07 07:03:07",
+            "image": "/static/media/2024-08-07_7_3_7_673_products.png",
+            "file": {
+                "path": "/static/media/2024-08-07_7_3_7_673_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-07_7_3_7_673_products.png"
+                }
+            ]
+        },
+        {
+            "id": "15",
+            "title": "Test",
+            "description": "ertyuiop[ uhyiojpk[ dtyfugihojp tryfugiopm tyfugiho tfyugihoj bijnkuyggiho yuggihoj; asgiudsabk d yugasnbdmasug iosanasfioasf iuaskfbasfasiohf b asugksajfbas",
+            "price": "8000",
+            "color": "123456",
+            "category_id": "1",
+            "file_id": "44",
+            "created_at": "2024-08-07 07:04:36",
+            "updated_at": "2024-08-07 07:04:36",
+            "image": "/static/media/2024-08-07_7_4_36_130_products.png",
+            "file": {
+                "path": "/static/media/2024-08-07_7_4_36_130_products.png"
+            },
+            "images": [
+                {
+                    "path": "/static/media/2024-08-07_7_4_36_130_products.png"
+                }
+            ]
+        }
+    ]
+}

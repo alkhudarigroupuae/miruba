@@ -1,0 +1,1 @@
+[30-Jan-2026 19:25:30 UTC] Cron unschedule event error for hook: wc_admin_process_orders_milestone, Error code: could_not_set, Error message: The cron event list could not be saved., Data: {"schedule":"hourly","args":[],"interval":3600}

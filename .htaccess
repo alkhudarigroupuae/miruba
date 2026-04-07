@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Route API endpoints used by frontend bundle
+RewriteRule ^(client|admin|send)/?(.*)$ api.php/$1/$2 [L,QSA,NC]
+RewriteRule ^api/(.*)$ api.php/$1 [L,QSA,NC]
+RewriteRule ^wp-json/(.*)$ api.php/wp-json/$1 [L,QSA,NC]
+
+# Handle React Router (SPA)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]

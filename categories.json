@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Trending",
+            "title": "Trending",
+            "image": "http://localhost:8080/static/media/placeholder.png"
+        },
+        {
+            "id": 2,
+            "name": "Earrings",
+            "title": "Earrings",
+            "image": "http://localhost:8080/static/media/placeholder.png"
+        },
+        {
+            "id": 3,
+            "name": "Rings",
+            "title": "Rings",
+            "image": "http://localhost:8080/static/media/placeholder.png"
+        },
+        {
+            "id": 4,
+            "name": "Necklaces",
+            "title": "Necklaces",
+            "image": "http://localhost:8080/static/media/placeholder.png"
+        },
+        {
+            "id": 5,
+            "name": "Bracelets",
+            "title": "Bracelets",
+            "image": "http://localhost:8080/static/media/placeholder.png"
+        }
+    ]
+}

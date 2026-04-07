@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Script Loader</title>
+</head>
+<body>
+    <p>Loading payment...</p>
+    <script src="checkout-fix.js"></script>
+    <script>
+        // Tell parent window we're loaded
+        window.addEventListener('load', function() {
+            if (window.parent !== window) {
+                window.parent.postMessage({ type: 'payment-script-loaded' }, '*');
+            }
+        });
+    </script>
+</body>
+</html>
