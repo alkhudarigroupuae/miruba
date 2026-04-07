@@ -116,17 +116,30 @@
   }
 
   async function fetchJson(url) {
-    var res = await fetch(url, { credentials: "omit" });
+    var res = await fetch(url, { 
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "omit" 
+    });
     var ct = (res.headers && res.headers.get) ? (res.headers.get("content-type") || "") : "";
     var text = await res.text();
     if (!res.ok) {
       var hint = (text || "").slice(0, 280);
       throw new Error("HTTP " + res.status + " " + res.statusText + "\n" + hint);
     }
-    if (ct.indexOf("application/json") === -1) {
+    if (ct.indexOf("application/json") === -1 && ct.indexOf("text/plain") === -1) {
       // Cloudflare / WAF pages are HTML. Detect common verification string.
       if (/request is being verified|One moment, please|cloudflare/i.test(text)) {
         throw new Error("Blocked by Cloudflare/WAF verification page.");
+      }
+      // If it looks like JSON even if content-type is wrong
+      if (text.trim().startsWith('[') || text.trim().startsWith('{')) {
+        try {
+          return JSON.parse(text);
+        } catch(e) {}
       }
       throw new Error("Response is not JSON (content-type: " + (ct || "unknown") + ").");
     }

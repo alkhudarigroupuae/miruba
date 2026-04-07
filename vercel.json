@@ -6,6 +6,10 @@
       "destination": "https://admin.mirruba-jewellery.com/api/$1"
     },
     {
+      "source": "/wp-json/wc/v3/products(.*)",
+      "destination": "https://admin.mirruba-jewellery.com/wp-json/wc/v3/products$1"
+    },
+    {
       "source": "/wp-json/wc/v3/(.*)",
       "destination": "https://admin.mirruba-jewellery.com/wp-json/wc/v3/$1"
     },
