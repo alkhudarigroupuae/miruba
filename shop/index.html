@@ -109,15 +109,63 @@
 
       /* Responsive Media Queries */
       @media (max-width: 768px) {
-        header,nav,.navbar,.menu,[role="navigation"] {
-          gap: 8px !important;
+        header, nav, .navbar, .menu, [role="navigation"] {
           padding: 8px 12px !important;
           border-radius: 8px;
+          margin: 5px auto !important;
+          width: 96% !important;
         }
-        header a,nav a,.navbar a,.menu a,[role="navigation"] a {
-          font-size: 13px !important;
+
+        .nav-bar {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          gap: 5px !important;
+        }
+
+        .navigation {
+          display: none !important; /* Hide desktop menu */
+        }
+
+        .Logo {
+          order: 1 !important;
+          flex: 1 !important;
+          justify-content: flex-start !important;
+        }
+
+        .Logo img {
+          width: 140px !important;
+        }
+
+        .header-cart {
+          order: 2 !important;
+          flex: 0 0 auto !important;
+          gap: 10px !important;
+          margin-right: 10px !important;
+        }
+
+        /* Show Hamburger Icon on Mobile */
+        .pi-align-justify.Login-place {
+          display: block !important;
+          order: 3 !important;
+          color: #fff !important;
+          font-size: 24px !important;
+          cursor: pointer !important;
+        }
+
+        .custom-lang-switcher {
+          display: inline-block !important;
+        }
+
+        .lang-dropbtn {
           padding: 4px 8px !important;
+          font-size: 12px !important;
         }
+
+        .lang-dropbtn i {
+          font-size: 16px !important;
+        }
+
         .woo-products-title { font-size: 24px; margin-bottom: 20px; }
         .allBracelets-container {
           grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
