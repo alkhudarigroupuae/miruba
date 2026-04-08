@@ -396,10 +396,17 @@
       
       /* Ensure any legacy /view anchors route internally */
       a[href^="/view"], a[href*="/view?"] { cursor: pointer; }
+      
+      /* Trending section on shop */
+      #shop-trending-root { max-width: 1200px; margin: 16px auto; padding: 0 20px; }
     </style>
   </head>
   <body>
     <div id="root"></div>
+    <section id="shop-trending-root">
+      <h2 class="woo-products-title">Trending Products</h2>
+      <div class="allBracelets-container" id="shop-trending-grid"></div>
+    </section>
     <section id="woo-products-root"><div class="woo-products-message">Loading Shop Products...</div></section>
     <footer style="background: rgba(0,0,0,0.58); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; padding: 20px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 13px; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
       <div style="max-width: 1200px; margin: 0 auto; text-align: center; display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center; width: 100%; font-size: 13px;">
@@ -536,6 +543,47 @@
       } else {
         setupLangSwitcher();
       }
+    })();
+    </script>
+    <script>
+    (function(){
+      async function fetchJson(u){ var r=await fetch(u); var t=await r.text(); if(!r.ok) throw new Error(t.slice(0,200)||('HTTP '+r.status)); try{return JSON.parse(t);}catch(e){throw new Error('Bad JSON');} }
+      function imgOf(p){ return (p && p.images && p.images[0] && p.images[0].src) ? p.images[0].src : ''; }
+      function priceOf(p){ 
+        var cfg = window.WOO_PRODUCTS_CONFIG||{currencyPrefix:'$'};
+        if(typeof p.price==='string' && p.price) return Number(p.price).toFixed(2) + (cfg.currencyPrefix==='$'?'$':cfg.currencyPrefix); 
+        var pr = p && p.prices ? p.prices : null; 
+        if(!pr||!pr.price) return '0.00' + (cfg.currencyPrefix==='$'?'$':cfg.currencyPrefix); 
+        var n = Number(pr.price)/Math.pow(10, Number(pr.currency_minor_unit||2)); 
+        return (Number.isFinite(n)? n.toFixed(2) : '0.00') + (cfg.currencyPrefix==='$'?'$':cfg.currencyPrefix); 
+      }
+      function hasTrending(p){
+        var c=p&&p.categories?p.categories:[]; for(var i=0;i<c.length;i++){ if((c[i].name||'').toLowerCase()==='trending') return true; }
+        var tg=p&&p.tags?p.tags:[]; for(var j=0;j<tg.length;j++){ if((tg[j].name||'').toLowerCase()==='trending') return true; }
+        return false;
+      }
+      async function loadShopTrending(){
+        var mount = document.getElementById('shop-trending-grid');
+        if(!mount) return;
+        // skeleton
+        var sk=''; for(var i=0;i<6;i++){ sk+='<div class="skeleton"><div class="sk-img"></div><div class="bracelets-details"><p class="sk-line"></p><p class="sk-line" style="width:40%"></p></div></div>'; }
+        mount.innerHTML = sk;
+        var cfg = window.WOO_PRODUCTS_CONFIG||{};
+        try{
+          var url='/wp-json/wc/v3/products?consumer_key='+encodeURIComponent(cfg.consumerKey)+'&consumer_secret='+encodeURIComponent(cfg.consumerSecret)+'&orderby=date&order=desc&per_page=24';
+          var list = await fetchJson(url);
+          var trend = list.filter(hasTrending);
+          if (trend.length===0) trend = list.slice(0,6);
+          var html='';
+          for(var i=0;i<Math.min(6, trend.length); i++){
+            var p=trend[i];
+            var link='/product/'+(p.slug||p.id);
+            html+='<div class="bracelets-card"><a href="'+link+'" style="text-decoration:none;color:inherit;display:block;"><img src="'+imgOf(p)+'" alt="'+(p.name||'Product')+'"><div class="bracelets-details"><p class="title">'+(p.name||'')+'</p><p class="price">'+priceOf(p)+'</p></div></a></div>';
+          }
+          mount.innerHTML = html;
+        }catch(e){ mount.innerHTML=''; }
+      }
+      if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', loadShopTrending); else loadShopTrending();
     })();
     </script>
   </body>
