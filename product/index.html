@@ -49,7 +49,7 @@
       window.WOO_PRODUCTS_CONFIG = window.WOO_PRODUCTS_CONFIG || {
         storeUrl: location.origin,
         perPage: 60,
-        currencyPrefix: "$",
+        currencyPrefix: "AED ",
         shopPath: "/shop",
         consumerKey: "ck_77bbe3263ef7549b67a8b293430e28f6b059b0d3",
         consumerSecret: "cs_7b5f93b8592b953a7adbe6464e367c48a5058726"
@@ -84,7 +84,9 @@
           var root = document.getElementById("product-root");
           root.querySelector(".img").innerHTML = img ? '<img src="'+img+'" alt="">' : '';
           root.querySelector(".title").textContent = p.name || "";
-          root.querySelector(".price").textContent = (cfg.currencyPrefix === "$" ? price+"$" : cfg.currencyPrefix+price);
+          var cp = String(cfg.currencyPrefix || "AED ").trim();
+          var priceDisplay = (cp === "$") ? (price+"$") : ((cp.endsWith(" ")?cp:cp+" ")+price);
+          root.querySelector(".price").textContent = priceDisplay;
           var tmp = document.createElement("div"); tmp.innerHTML = p.description || p.short_description || "";
           root.querySelector(".desc").textContent = (tmp.textContent || tmp.innerText || "").trim();
           // Wire buttons

@@ -12,6 +12,12 @@
   if (!root) return;
   var shopUrl = (String(cfg.storeUrl || "").replace(/\/$/, "") || "") + (cfg.shopPath || "/shop");
 
+  function formatPrice(amount) {
+    var cp = String(cfg.currencyPrefix || "AED ").trim();
+    if (cp === "$") return amount + "$";
+    return (cp.endsWith(" ") ? cp : cp + " ") + amount;
+  }
+
   function renderSkeleton(count) {
     count = Number(count || 8);
     var items = "";
@@ -111,7 +117,7 @@
     var html = '<h2 class="woo-products-title">Latest Products</h2><div class="allBracelets-container">';
     for (var i = 0; i < products.length; i += 1) {
       var p = products[i];
-      var priceDisplay = p.price + (cfg.currencyPrefix === "$" ? "$" : cfg.currencyPrefix);
+      var priceDisplay = formatPrice(p.price);
       var slugOrId = p.slug || String(p.id || "");
       var productLink = "/product/" + slugOrId;
       

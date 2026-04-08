@@ -13,7 +13,7 @@
       window.WOO_PRODUCTS_CONFIG = {
         storeUrl: location.origin,
         perPage: 60,
-        currencyPrefix: "$",
+        currencyPrefix: "AED ",
         shopPath: "/shop",
         consumerKey: "ck_77bbe3263ef7549b67a8b293430e28f6b059b0d3",
         consumerSecret: "cs_7b5f93b8592b953a7adbe6464e367c48a5058726"
@@ -274,10 +274,9 @@
         font-family: 'El Messiri', 'GE Hili', sans-serif !important;
       }
       
-      /* Ensure phone numbers and numbers stay LTR in Arabic mode */
-      p, span, a, div {
-        unicode-bidi: plaintext;
-      }
+      html[lang="en"] p, [dir="ltr"] p { direction: ltr; text-align: left; }
+      html[lang="ar"] p, [dir="rtl"] p { direction: rtl; text-align: right; }
+      p, span, a, div { unicode-bidi: plaintext; }
       
       /* Specifically target the phone number provided by the user */
       p:contains("+971"), span:contains("+971"), a:contains("+971") {
