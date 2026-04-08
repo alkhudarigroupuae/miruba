@@ -432,6 +432,25 @@
     (function () {
       // Setup custom language switcher
       function setupLangSwitcher() {
+        // Enforce 50% transparent black header site-wide
+        (function enforceHeader(){
+          try {
+            var hs = document.querySelectorAll('header, nav, .navbar, .menu, [role="navigation"]');
+            for (var i = 0; i < hs.length; i += 1) {
+              var h = hs[i];
+              h.style.background = 'rgba(0,0,0,0.5)';
+              h.style.backdropFilter = 'saturate(120%) blur(6px)';
+              h.style.webkitBackdropFilter = 'saturate(120%) blur(6px)';
+              h.style.position = 'sticky';
+              h.style.top = '0';
+              h.style.zIndex = '10000';
+              h.style.margin = '0';
+              h.style.width = '100%';
+            }
+          } catch(_) {}
+          setTimeout(enforceHeader, 1200);
+        })();
+        
         // Wait for the cart container to be available
         const cartContainer = document.querySelector('.header-cart');
         if (!cartContainer) {

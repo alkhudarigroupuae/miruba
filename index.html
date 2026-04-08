@@ -109,6 +109,9 @@
       .allBracelets-details .price, .bracelets-details .price { font-size: 20px; font-weight: 800; color: #d4a956; margin: 0; }
       html[lang="en"] p, [dir="ltr"] p { direction: ltr; text-align: left; }
       html[lang="ar"] p, [dir="rtl"] p { direction: rtl; text-align: right; }
+      #checkout-note-box label { color: #fff !important; }
+      #checkout-note-box textarea { color: #fff !important; }
+      #checkout-note-box textarea::placeholder { color: rgba(255,255,255,0.95) !important; }
       #home-trending-root { display: none !important; } /* Remove trending from home as requested */
 
       /* Mobile Specific (up to 768px) */
@@ -472,6 +475,26 @@
   }
 
   var start = function () {
+    // Enforce 50% transparent black header site-wide
+    function enforceHeader() {
+      try {
+        var hs = document.querySelectorAll('header, nav, .navbar, .menu, [role="navigation"]');
+        for (var i = 0; i < hs.length; i += 1) {
+          var h = hs[i];
+          h.style.background = 'rgba(0,0,0,0.5)';
+          h.style.backdropFilter = 'saturate(120%) blur(6px)';
+          h.style.webkitBackdropFilter = 'saturate(120%) blur(6px)';
+          h.style.position = 'sticky';
+          h.style.top = '0';
+          h.style.zIndex = '10000';
+          h.style.margin = '0';
+          h.style.width = '100%';
+        }
+      } catch(_) {}
+    }
+    enforceHeader();
+    setInterval(enforceHeader, 1200);
+    
     // Force Shop link to work
     setInterval(function() {
       var links = document.querySelectorAll('.nav-link');
