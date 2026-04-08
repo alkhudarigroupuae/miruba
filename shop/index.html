@@ -533,6 +533,39 @@
             }
             var nodes = document.querySelectorAll('[class*=\"currency\"], [class*=\"pay\"], .currency, .payment-currency, .currency-selector, .paying-with');
             for (var z=0; z<nodes.length; z++){ var n=nodes[z]; var t=(n.textContent||'').toLowerCase(); if(t.indexOf('paying with')!==-1||t.indexOf('usd')!==-1||t.indexOf('$')!==-1){ n.style.display='none'; } }
+            
+            var footer = document.querySelector('.checkout--footer');
+            if (footer && !document.getElementById('checkout-note-box')) {
+              var box = document.createElement('div');
+              box.id = 'checkout-note-box';
+              box.style.margin = '12px 0 8px';
+              box.style.padding = '10px';
+              box.style.background = 'rgba(255,255,255,0.06)';
+              box.style.border = '1px solid rgba(255,255,255,0.15)';
+              box.style.borderRadius = '10px';
+              box.innerHTML = '<label style=\"display:block;font-size:13px;opacity:.85;margin-bottom:6px;color:#fff\">Order note</label><textarea id=\"checkout-note-input\" rows=\"3\" style=\"width:100%;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:rgba(0,0,0,.35);color:#fff;padding:8px\" placeholder=\"Add a note to your order (optional)\"></textarea>';
+              footer.parentNode.insertBefore(box, footer);
+              var input = box.querySelector('#checkout-note-input');
+              input.value = localStorage.getItem('checkoutNote') || '';
+              input.addEventListener('input', function(){ localStorage.setItem('checkoutNote', input.value || ''); });
+              var btn = footer.querySelector('.checkout-btn');
+              if (btn && !btn.dataset.noteWired) {
+                btn.addEventListener('click', function(e){
+                  var val = (input.value || '').trim();
+                  localStorage.setItem('checkoutNote', val);
+                  if (btn.tagName.toLowerCase() === 'a') {
+                    try {
+                      e.preventDefault();
+                      var href = btn.getAttribute('href') || '/checkout';
+                      var u = new URL(href, location.origin);
+                      u.searchParams.set('note', val);
+                      location.href = u.pathname + u.search;
+                    } catch(_) {}
+                  }
+                });
+                btn.dataset.noteWired = '1';
+              }
+            }
         }, 1000);
         
         // Intercept legacy /view links on the shop page
